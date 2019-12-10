@@ -65,9 +65,9 @@ $(DOMAIN).pfx: $(DOMAIN).crt
 verify-crt:
 	openssl x509 -in $(DOMAIN)/server.crt -text -noout
 
-.PHONY: fingerprint-pfx
-fingerprint-pfx:
-	openssl x509 -in $(DOMAIN)/server.pfx -noout -fingerprint
+.PHONY: fingerprint-crt
+fingerprint-crt:
+	openssl x509 -in $(DOMAIN)/server.crt -noout -fingerprint -sha256
 
 .PHONY: clean
 clean:
