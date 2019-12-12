@@ -6,6 +6,9 @@ STATE := RU
 COMPANY := Internet Widgits Pty Ltd 
 IP := 
 
+HOST := $(or $(HOST), $(IP), $(DOMAIN))
+PORT := 443
+
 # credits to: https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309
 
 # usage:
@@ -68,6 +71,10 @@ verify-crt:
 .PHONY: fingerprint-crt
 fingerprint-crt:
 	openssl x509 -in $(DOMAIN)/server.crt -noout -fingerprint -sha256
+
+.PHONY: show-remote-crt
+show-remote-crt:
+	openssl s_client -showcerts -connect $(HOST):$(PORT) 2>/dev/null  | openssl x509 -inform pem -noout -text
 
 .PHONY: clean
 clean:

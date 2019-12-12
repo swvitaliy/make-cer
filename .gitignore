@@ -1,3 +1,4 @@
 rootCA.key
 rootCA.crt
+rootCA.pem
 **/
